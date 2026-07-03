@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Be Mindful — Daily Mindfulness & Meditation | OASIS Omniverse</title>
+<meta name="description" content="Be Mindful — earn karma through daily mindfulness, meditation, breathwork and yoga. Track your wellbeing, grow your practice and carry your progress across the entire OASIS Omniverse.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧘</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#030b12;
+  --teal:#00c8a0;
+  --teal2:#00f0c0;
+  --cyan:#00e5ff;
+  --violet:#7b4fe8;
+  --lavender:#a880f8;
+  --gold:#f0c060;
+  --heading:#d0eed8;
+  --text:#a8bfd8;
+  --border:rgba(0,200,160,.18);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+
+#starfield{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(3,11,18,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,200,160,.1)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center}
+.nav-logo{font-family:'Orbitron',sans-serif;font-size:15px;font-weight:900;letter-spacing:.12em;color:var(--teal);text-decoration:none;white-space:nowrap}
+.nav-logo span{color:var(--heading)}
+.nav-links{display:flex;align-items:center;gap:28px;margin-left:36px}
+.nav-links a{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--text);text-decoration:none;opacity:.75;transition:opacity .2s,color .2s}
+.nav-links a:hover{opacity:1;color:var(--teal)}
+.nav-right{display:flex;align-items:center;gap:12px;margin-left:auto}
+.nav-cta{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--bg);background:var(--teal);border:none;padding:9px 18px;border-radius:6px;cursor:pointer;text-decoration:none;white-space:nowrap;font-weight:700;transition:background .2s}
+.nav-cta:hover{background:var(--teal2)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;overflow:hidden;z-index:1}
+.hero-bg-glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(0,200,160,.07),transparent 65%),radial-gradient(ellipse 35% 30% at 25% 65%,rgba(123,79,232,.05),transparent 60%),radial-gradient(ellipse 35% 30% at 75% 60%,rgba(0,229,255,.04),transparent 60%);pointer-events:none}
+
+/* Breathing lotus */
+.lotus-wrap{width:220px;height:220px;margin:0 auto 32px;position:relative;display:flex;align-items:center;justify-content:center}
+.lotus-ring{position:absolute;border-radius:50%;border:1px solid rgba(0,200,160,.25);animation:breatheRing 6s ease-in-out infinite}
+.lotus-ring:nth-child(1){width:220px;height:220px;animation-delay:0s}
+.lotus-ring:nth-child(2){width:180px;height:180px;border-color:rgba(123,79,232,.2);animation-delay:.3s}
+.lotus-ring:nth-child(3){width:140px;height:140px;border-color:rgba(0,229,255,.2);animation-delay:.6s}
+.lotus-emoji{font-size:72px;animation:breatheEmoji 6s ease-in-out infinite;position:relative;z-index:1;filter:drop-shadow(0 0 24px rgba(0,200,160,.4))}
+@keyframes breatheRing{0%,100%{transform:scale(.92);opacity:.4}50%{transform:scale(1.08);opacity:.9}}
+@keyframes breatheEmoji{0%,100%{transform:scale(.94)}50%{transform:scale(1.06)}}
+
+.hero-eyebrow{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.28em;color:var(--teal);margin-bottom:18px;opacity:.9}
+.hero-title{font-family:'Orbitron',sans-serif;font-size:clamp(40px,7vw,84px);font-weight:900;letter-spacing:.04em;color:var(--heading);line-height:1.0;margin-bottom:12px;text-shadow:0 0 60px rgba(0,200,160,.2)}
+.hero-subtitle{font-family:'Orbitron',sans-serif;font-size:clamp(12px,2vw,16px);font-weight:600;letter-spacing:.2em;color:var(--teal);margin-bottom:24px;opacity:.85}
+.hero-desc{font-size:clamp(15px,2.2vw,18px);color:var(--text);max-width:640px;margin:0 auto 36px;line-height:1.8}
+.hero-badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:40px}
+.hero-badge{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:.18em;padding:6px 14px;border-radius:20px;background:rgba(0,200,160,.08);border:1px solid rgba(0,200,160,.25);color:var(--teal)}
+.hero-badge.violet{background:rgba(123,79,232,.08);border-color:rgba(123,79,232,.25);color:var(--lavender)}
+.hero-badge.gold{background:rgba(240,192,96,.08);border-color:rgba(240,192,96,.25);color:var(--gold)}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-primary{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--bg);background:linear-gradient(135deg,var(--teal),#008c6e);border:none;padding:14px 28px;border-radius:8px;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,200,160,.3)}
+.btn-secondary{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--teal);background:transparent;border:1px solid rgba(0,200,160,.35);padding:14px 28px;border-radius:8px;cursor:pointer;text-decoration:none;transition:border-color .2s,background .2s}
+.btn-secondary:hover{border-color:var(--teal);background:rgba(0,200,160,.06)}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* SECTIONS */
+.section{position:relative;z-index:1;padding:88px 24px}
+.section-kicker{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.26em;color:var(--teal);text-align:center;margin-bottom:14px}
+.section-kicker.violet{color:var(--lavender)}
+.section-kicker.gold{color:var(--gold)}
+.section-title{font-family:'Orbitron',sans-serif;font-size:clamp(22px,4vw,40px);font-weight:900;letter-spacing:.06em;color:var(--heading);text-align:center;margin-bottom:10px}
+.section-line{display:block;width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--teal),transparent);margin:0 auto 32px}
+.section-line.violet{background:linear-gradient(90deg,transparent,var(--lavender),transparent)}
+.section-line.gold{background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.section-sub{font-size:17px;color:var(--text);text-align:center;max-width:680px;margin:0 auto 52px;line-height:1.75}
+
+/* PRACTICE CARDS */
+.practice-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:20px;max-width:1100px;margin:0 auto}
+.practice-card{background:linear-gradient(135deg,rgba(0,30,24,.9),rgba(0,10,8,.95));border:1px solid var(--border);border-radius:18px;padding:30px 28px;display:flex;flex-direction:column;gap:14px}
+.practice-card.violet{border-color:rgba(123,79,232,.2)}
+.practice-card.gold{border-color:rgba(240,192,96,.2)}
+.practice-icon{font-size:36px}
+.practice-kicker{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--teal)}
+.practice-kicker.violet{color:var(--lavender)}
+.practice-kicker.gold{color:var(--gold)}
+.practice-title{font-family:'Orbitron',sans-serif;font-size:15px;font-weight:800;color:var(--heading);letter-spacing:.04em}
+.practice-desc{font-size:14px;color:var(--text);line-height:1.7}
+
+/* BREATHE SECTION */
+.breathe-band{background:linear-gradient(135deg,rgba(0,200,160,.05),rgba(123,79,232,.04));border-top:1px solid rgba(0,200,160,.1);border-bottom:1px solid rgba(0,200,160,.1);padding:72px 24px;position:relative;z-index:1;text-align:center}
+.breathe-inner{max-width:800px;margin:0 auto}
+.breathe-circle{width:180px;height:180px;border-radius:50%;border:2px solid rgba(0,200,160,.3);margin:0 auto 40px;display:flex;align-items:center;justify-content:center;position:relative;animation:breatheFull 8s ease-in-out infinite;cursor:pointer}
+.breathe-circle::before{content:'';position:absolute;inset:-12px;border-radius:50%;border:1px solid rgba(0,200,160,.12);animation:breatheFull 8s ease-in-out infinite .4s}
+.breathe-circle::after{content:'';position:absolute;inset:-24px;border-radius:50%;border:1px solid rgba(0,200,160,.07);animation:breatheFull 8s ease-in-out infinite .8s}
+.breathe-label{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--teal);animation:breatheLabel 8s ease-in-out infinite}
+@keyframes breatheFull{0%,100%{transform:scale(.88);border-color:rgba(0,200,160,.2)}50%{transform:scale(1.12);border-color:rgba(0,200,160,.55)}}
+@keyframes breatheLabel{0%,45%{opacity:.5}50%{opacity:1}55%,100%{opacity:.5}}
+
+/* MOOD TRACKER */
+.mood-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,100%),1fr));gap:14px;max-width:900px;margin:0 auto}
+.mood-card{background:linear-gradient(135deg,rgba(0,30,24,.9),rgba(0,10,8,.95));border:1px solid var(--border);border-radius:14px;padding:20px 18px;text-align:center}
+.mood-emoji{font-size:32px;margin-bottom:8px}
+.mood-name{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:800;color:var(--heading);margin-bottom:6px;letter-spacing:.06em}
+.mood-effect{font-size:13px;color:var(--text);line-height:1.5}
+
+/* KARMA BAND */
+.karma-band{background:linear-gradient(135deg,rgba(0,200,160,.05),rgba(123,79,232,.04));border-top:1px solid rgba(0,200,160,.12);border-bottom:1px solid rgba(0,200,160,.12);padding:72px 24px;position:relative;z-index:1}
+.karma-inner{max-width:960px;margin:0 auto;text-align:center}
+.karma-examples{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:36px}
+.karma-eg{background:rgba(0,200,160,.05);border:1px solid rgba(0,200,160,.14);border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:12px}
+.karma-eg-icon{font-size:20px}
+.karma-eg-text{font-size:14px;color:var(--text)}
+.karma-eg-pts{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--teal);margin-left:auto;white-space:nowrap}
+
+/* OASIS BAND */
+.oasis-band{background:linear-gradient(135deg,rgba(0,200,160,.05),rgba(123,79,232,.03));border-top:1px solid rgba(0,200,160,.1);border-bottom:1px solid rgba(0,200,160,.1);padding:72px 24px;position:relative;z-index:1}
+
+/* PILLS */
+.pill-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:32px}
+.pill{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:.18em;padding:7px 16px;border-radius:20px;background:rgba(0,200,160,.06);border:1px solid rgba(0,200,160,.18);color:var(--teal)}
+.pill.violet{background:rgba(123,79,232,.06);border-color:rgba(123,79,232,.18);color:var(--lavender)}
+.pill.gold{background:rgba(240,192,96,.06);border-color:rgba(240,192,96,.18);color:var(--gold)}
+
+/* QUOTE */
+.quote-band{padding:64px 24px;position:relative;z-index:1;text-align:center;background:rgba(255,255,255,.003)}
+.quote-inner{max-width:780px;margin:0 auto}
+
+/* FOOTER */
+footer{position:relative;z-index:1;background:rgba(3,11,18,.95);border-top:1px solid rgba(0,200,160,.1);padding:48px 24px 36px}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start}
+.footer-brand{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:900;color:var(--teal);letter-spacing:.1em;margin-bottom:10px}
+.footer-sub{font-size:14px;color:#a8bfd8;line-height:1.6;max-width:400px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;justify-content:flex-end}
+.footer-links a{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.15em;color:#a8bfd8;text-decoration:none;opacity:.75;transition:opacity .2s,color .2s}
+.footer-links a:hover{opacity:1;color:var(--teal)}
+.footer-copy{text-align:center;font-size:12px;color:#a8bfd8;opacity:.45;margin-top:32px;border-top:1px solid rgba(0,200,160,.07);padding-top:24px}
+
+@media(max-width:700px){
+  .nav-links{display:none}
+  .footer-inner{grid-template-columns:1fr}
+  .footer-links{justify-content:flex-start}
+}
+@media(max-width:520px){
+  .section{padding:64px .75rem}
+}
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="https://oasisomniverse.one">OASIS <span>OMNIVERSE</span></a>
+    <div class="nav-links">
+      <a href="#practice">PRACTICE</a>
+      <a href="#breathe">BREATHE</a>
+      <a href="#mood">MOOD</a>
+      <a href="#karma">KARMA</a>
+      <a href="#oasis">OASIS</a>
+    </div>
+    <div class="nav-right" id="nav-right">
+      <a class="nav-cta" href="https://oasisomniverse.one">OASIS OMNIVERSE</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-glow"></div>
+
+  <div class="lotus-wrap">
+    <div class="lotus-ring"></div>
+    <div class="lotus-ring"></div>
+    <div class="lotus-ring"></div>
+    <div class="lotus-emoji">🪷</div>
+  </div>
+
+  <div class="hero-eyebrow">DAILY MINDFULNESS · OASIS OMNIVERSE</div>
+  <h1 class="hero-title">BE MINDFUL</h1>
+  <div class="hero-subtitle">MEDITATE · BREATHE · MOVE · EARN KARMA</div>
+  <p class="hero-desc">Your daily mindfulness companion — built into the OASIS Omniverse. Every meditation session, breathing exercise, yoga class and moment of stillness earns karma that carries across every OASIS game. Be present. Be well. Be powerful.</p>
+
+  <div class="hero-badges">
+    <span class="hero-badge">MEDITATION</span>
+    <span class="hero-badge">BREATHWORK</span>
+    <span class="hero-badge violet">YOGA TRACKER</span>
+    <span class="hero-badge violet">MOOD TRACKING</span>
+    <span class="hero-badge gold">KARMA REWARDS</span>
+    <span class="hero-badge gold">OASIS INTEGRATED</span>
+  </div>
+
+  <div class="hero-actions">
+    <a href="#practice" class="btn-primary">START YOUR PRACTICE</a>
+    <a href="https://oasisomniverse.one" target="_blank" class="btn-secondary">OASIS OMNIVERSE</a>
+  </div>
+</section>
+
+<!-- WHAT IS BE MINDFUL -->
+<section class="section" id="about" style="background:rgba(255,255,255,.004)">
+  <div class="section-kicker">THE VISION</div>
+  <h2 class="section-title">MINDFULNESS AS A SUPERPOWER</h2>
+  <span class="section-line"></span>
+  <p class="section-sub">Be Mindful began as a module planned for Our World — a way to reward genuine spiritual practice with real in-game power. It grew into a standalone OAPP that sits at the heart of the OASIS wellness ecosystem, connecting every mindful moment to karma and cross-game progression.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:20px;max-width:960px;margin:0 auto">
+    <div class="reveal" style="background:linear-gradient(135deg,rgba(0,30,24,.9),rgba(0,10,8,.95));border:1px solid var(--border);border-radius:16px;padding:28px 26px">
+      <div style="font-size:28px;margin-bottom:12px">🧠</div>
+      <div style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:800;color:var(--heading);margin-bottom:10px">REAL PRACTICE, REAL REWARDS</div>
+      <p style="font-size:14px;color:var(--text);line-height:1.7">Every session you complete earns karma — not simulated karma, but the same karma score that powers your avatar across Our World, One World, ODOOM and OQUAKE. The calmer and more consistent your practice, the stronger you become across the entire OASIS.</p>
+    </div>
+    <div class="reveal" style="background:linear-gradient(135deg,rgba(0,30,24,.9),rgba(0,10,8,.95));border:1px solid rgba(123,79,232,.2);border-radius:16px;padding:28px 26px">
+      <div style="font-size:28px;margin-bottom:12px">📊</div>
+      <div style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:800;color:var(--heading);margin-bottom:10px">YOUR WELLBEING, TRACKED</div>
+      <p style="font-size:14px;color:var(--text);line-height:1.7">Log your mood before and after each session and watch it plotted on a live line graph over days, weeks and months. Your mood directly affects your avatar's aura and glow in every OASIS game — higher wellbeing means a more radiant, powerful presence.</p>
+    </div>
+    <div class="reveal" style="background:linear-gradient(135deg,rgba(0,30,24,.9),rgba(0,10,8,.95));border:1px solid rgba(240,192,96,.2);border-radius:16px;padding:28px 26px">
+      <div style="font-size:28px;margin-bottom:12px">🌍</div>
+      <div style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:800;color:var(--heading);margin-bottom:10px">PART OF OUR WORLD</div>
+      <p style="font-size:14px;color:var(--text);line-height:1.7">Be Mindful is a full plug-in module for Our World — your sessions appear on the Our World map as glowing practice nodes. Meditating in a park generates more karma than indoors. Group sessions multiply the effect. The more people practising in an area, the higher that area's collective vibration rises.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE TYPES -->
+<section class="section" id="practice">
+  <div class="section-kicker">YOUR TOOLKIT</div>
+  <h2 class="section-title">EVERY KIND OF PRACTICE</h2>
+  <span class="section-line"></span>
+  <p class="section-sub">Be Mindful supports every form of mind-body practice — each earning karma in its own way, each contributing to your OASIS wellbeing score.</p>
+
+  <div class="practice-grid">
+    <div class="practice-card reveal">
+      <div class="practice-icon">🧘</div>
+      <div class="practice-kicker">GUIDED & SILENT</div>
+      <div class="practice-title">MEDITATION</div>
+      <div class="practice-desc">Choose from guided sessions across every tradition — mindfulness, loving-kindness, body scan, visualisation and more — or sit in open silence. The longer and more consistent your sessions, the higher the karma multiplier. EEG headband support measures actual calmness for bonus rewards.</div>
+    </div>
+    <div class="practice-card reveal violet">
+      <div class="practice-icon">💨</div>
+      <div class="practice-kicker violet">GUIDED BREATHWORK</div>
+      <div class="practice-title">BREATH TRAINER</div>
+      <div class="practice-desc">Box breathing, 4-7-8, Wim Hof, coherence breathing and more. An animated breathing guide expands and contracts to your chosen rhythm. Your breath rate is measured via the front camera for accuracy. Completing a full round earns karma and contributes to your daily streak.</div>
+    </div>
+    <div class="practice-card reveal gold">
+      <div class="practice-icon">🧎</div>
+      <div class="practice-kicker gold">TRACK & EARN</div>
+      <div class="practice-title">YOGA TRACKER</div>
+      <div class="practice-desc">Log your yoga sessions — style, duration, teacher and location. Outdoor sessions in parks earn bonus karma. Classes booked through the Yoga4Autism Portal or verified local teachers earn a community karma bonus on top. Your total practice hours build toward milestone badges visible on your OASIS profile.</div>
+    </div>
+    <div class="practice-card reveal">
+      <div class="practice-icon">🌙</div>
+      <div class="practice-kicker">FADE TO SLEEP</div>
+      <div class="practice-title">SLEEP MUSIC PLAYER</div>
+      <div class="practice-desc">Play ambient, binaural or meditation music that gradually fades out as you drift off. Movement detection via your phone senses when you've fallen asleep and stops playback automatically. Sleep quality is logged and contributes to your wellbeing score — rest well, wake stronger.</div>
+    </div>
+    <div class="practice-card reveal violet">
+      <div class="practice-icon">🎯</div>
+      <div class="practice-kicker violet">VISUALISE</div>
+      <div class="practice-title">GUIDED VISUALISATION</div>
+      <div class="practice-desc">Immersive audio-guided journeys — sacred temples, forest clearings, Lemurian healing gardens, crystal caves. Each visualisation is a portal into a scene that exists inside One World too. Complete the visualisation and unlock a discovery token for that location when you next play One World.</div>
+    </div>
+    <div class="practice-card reveal gold">
+      <div class="practice-icon">🥋</div>
+      <div class="practice-kicker gold">MINDFUL MOVEMENT</div>
+      <div class="practice-title">TAI CHI & QI GONG</div>
+      <div class="practice-desc">Log Tai Chi, Qi Gong, ecstatic dance and other mindful movement sessions. Future motion-detection support will recognise postures and flows via your camera, automatically logging and earning karma without you needing to touch the screen. Movement is medicine — and it earns.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BREATHE INTERACTIVE -->
+<div class="breathe-band" id="breathe">
+  <div class="breathe-inner">
+    <div class="section-kicker" style="text-align:center;margin-bottom:14px">BUILT IN</div>
+    <h2 class="section-title">BREATHE RIGHT NOW</h2>
+    <span class="section-line" style="display:block;width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--teal),transparent);margin:0 auto 36px"></span>
+    <p style="font-size:16px;color:var(--text);max-width:560px;margin:0 auto 44px;line-height:1.75">Watch the circle. Inhale as it expands. Exhale as it contracts. Four seconds each way. This is coherence breathing — one of the most evidence-backed interventions for stress, focus and heart rate variability.</p>
+    <div class="breathe-circle">
+      <div class="breathe-label">BREATHE</div>
+    </div>
+    <p style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--teal);opacity:.6">INHALE 4s · EXHALE 4s · REPEAT</p>
+  </div>
+</div>
+
+<!-- MOOD TRACKER -->
+<section class="section" id="mood" style="background:rgba(255,255,255,.004)">
+  <div class="section-kicker violet">WELLBEING</div>
+  <h2 class="section-title">YOUR MOOD IS YOUR AURA</h2>
+  <span class="section-line violet"></span>
+  <p class="section-sub">Log how you feel before and after each session. Your mood is plotted over time on a live graph — and it directly shapes your avatar's aura, glow and presence across every OASIS game. Higher wellbeing, more radiant avatar.</p>
+
+  <div class="mood-grid">
+    <div class="mood-card reveal">
+      <div class="mood-emoji">😔</div>
+      <div class="mood-name">LOW</div>
+      <div class="mood-effect">Dim aura · Gentle karma multiplier · Calming sessions suggested</div>
+    </div>
+    <div class="mood-card reveal">
+      <div class="mood-emoji">😐</div>
+      <div class="mood-name">NEUTRAL</div>
+      <div class="mood-effect">Steady aura · Standard karma · Full practice menu available</div>
+    </div>
+    <div class="mood-card reveal">
+      <div class="mood-emoji">🙂</div>
+      <div class="mood-name">GOOD</div>
+      <div class="mood-effect">Warm aura · 1.25× karma multiplier · Movement sessions unlocked</div>
+    </div>
+    <div class="mood-card reveal">
+      <div class="mood-emoji">😊</div>
+      <div class="mood-name">GREAT</div>
+      <div class="mood-effect">Bright aura · 1.5× karma multiplier · Group sessions bonus active</div>
+    </div>
+    <div class="mood-card reveal" style="border-color:rgba(0,200,160,.3)">
+      <div class="mood-emoji">🤩</div>
+      <div class="mood-name">RADIANT</div>
+      <div class="mood-effect">Glowing aura · 2× karma multiplier · Rare visualisation unlocked</div>
+    </div>
+    <div class="mood-card reveal" style="border-color:rgba(123,79,232,.25)">
+      <div class="mood-emoji">😰</div>
+      <div class="mood-name">ANXIOUS</div>
+      <div class="mood-effect">Scattered aura · Grounding sessions suggested · Breathing guide auto-starts</div>
+    </div>
+    <div class="mood-card reveal" style="border-color:rgba(64,100,180,.2)">
+      <div class="mood-emoji">😴</div>
+      <div class="mood-name">TIRED</div>
+      <div class="mood-effect">Faded aura · Rest sessions prioritised · Sleep music player recommended</div>
+    </div>
+    <div class="mood-card reveal" style="border-color:rgba(0,200,160,.22)">
+      <div class="mood-emoji">🌿</div>
+      <div class="mood-name">PEACEFUL</div>
+      <div class="mood-effect">Serene aura · 1.75× karma multiplier · Deep visualisations unlocked</div>
+    </div>
+  </div>
+
+  <div class="reveal" style="max-width:700px;margin:40px auto 0;background:linear-gradient(135deg,rgba(0,30,24,.9),rgba(0,10,8,.95));border:1px solid rgba(123,79,232,.2);border-radius:16px;padding:28px 32px;text-align:left">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--lavender);margin-bottom:12px">WELLBEING GRAPH</div>
+    <div style="font-family:'Orbitron',sans-serif;font-size:15px;font-weight:800;color:var(--heading);margin-bottom:10px">TRACK YOUR JOURNEY OVER TIME</div>
+    <p style="font-size:14px;color:var(--text);line-height:1.7">Every mood log and session completion is plotted on a personal wellbeing line graph — day by day, week by week, month by month. Watch the trend lines rise as your practice deepens. Share milestones to your OASIS profile. Your journey is yours — the data never leaves your account.</p>
+  </div>
+</section>
+
+<!-- KARMA -->
+<div class="karma-band" id="karma">
+  <div class="karma-inner">
+    <div class="section-kicker gold" style="text-align:center;margin-bottom:14px">THE REWARD</div>
+    <h2 class="section-title">MINDFULNESS EARNS KARMA</h2>
+    <span class="section-line gold" style="display:block;width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 20px"></span>
+    <p style="font-size:16px;color:var(--text);max-width:680px;margin:0 auto 12px;line-height:1.75">Every session you complete contributes to the same karma score that powers your avatar across the entire OASIS Omniverse. Consistency compounds — daily streaks multiply your karma earning rate, and group sessions earn everyone in the group a bonus.</p>
+    <div class="karma-examples reveal">
+      <div class="karma-eg"><div class="karma-eg-icon">🧘</div><div class="karma-eg-text">10-min meditation</div><div class="karma-eg-pts">+20 karma</div></div>
+      <div class="karma-eg"><div class="karma-eg-icon">💨</div><div class="karma-eg-text">Breathing session</div><div class="karma-eg-pts">+15 karma</div></div>
+      <div class="karma-eg"><div class="karma-eg-icon">🧎</div><div class="karma-eg-text">Yoga class</div><div class="karma-eg-pts">+30 karma</div></div>
+      <div class="karma-eg"><div class="karma-eg-icon">🌙</div><div class="karma-eg-text">Full night logged</div><div class="karma-eg-pts">+10 karma</div></div>
+      <div class="karma-eg"><div class="karma-eg-icon">🌿</div><div class="karma-eg-text">Outdoor session</div><div class="karma-eg-pts">+10 bonus</div></div>
+      <div class="karma-eg"><div class="karma-eg-icon">🔥</div><div class="karma-eg-text">7-day streak</div><div class="karma-eg-pts">+100 karma</div></div>
+      <div class="karma-eg"><div class="karma-eg-icon">👥</div><div class="karma-eg-text">Group session</div><div class="karma-eg-pts">+25 bonus</div></div>
+      <div class="karma-eg"><div class="karma-eg-icon">🧠</div><div class="karma-eg-text">EEG calm verified</div><div class="karma-eg-pts">2× multiplier</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ORIGIN STORY -->
+<div style="background:linear-gradient(135deg,rgba(0,200,160,.04),rgba(123,79,232,.03));border-top:1px solid rgba(0,200,160,.1);border-bottom:1px solid rgba(0,200,160,.1);padding:72px 24px;position:relative;z-index:1">
+  <div style="max-width:820px;margin:0 auto">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.26em;color:var(--teal);text-align:center;margin-bottom:14px">THE ORIGIN</div>
+    <h2 style="font-family:'Orbitron',sans-serif;font-size:clamp(20px,3.5vw,34px);font-weight:900;letter-spacing:.06em;color:var(--heading);text-align:center;margin-bottom:10px">BUILT ONCE BEFORE</h2>
+    <span style="display:block;width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--teal),transparent);margin:0 auto 36px"></span>
+    <div class="reveal" style="background:linear-gradient(135deg,rgba(0,30,24,.9),rgba(0,10,8,.95));border:1px solid rgba(0,200,160,.2);border-radius:16px;padding:32px 36px">
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:.22em;color:var(--teal);margin-bottom:14px">DAVID ELLAMS · 2012</div>
+      <p style="font-size:16px;color:var(--heading);line-height:1.8;margin-bottom:16px">Be Mindful was first designed and nearly fully built in <strong style="color:var(--teal)">2012</strong> — a Windows 8 Metro app, built during David's contracting days on the commute into work and back home again. The UI was done. The breathing guide worked. The mood tracker was wired up. It was nearly ready to ship.</p>
+      <p style="font-size:16px;color:var(--text);line-height:1.8;margin-bottom:16px">Then his laptop was stolen. Every line of code gone. At the time he was more upset about losing the code than the laptop — the laptop was easy to replace. The code wasn't. After that he started backing everything up every night, auto-syncing to his PC and OneDrive. He never lost code like that again.</p>
+      <p style="font-size:16px;color:var(--text);line-height:1.8;margin-bottom:16px">He burned out not long after and was ill for two years from 2013. Be Mindful never got rebuilt. But it was never forgotten — it was always on the list, always planned, always <em style="color:var(--teal)">meant to exist</em>.</p>
+      <p style="font-size:16px;color:var(--heading);line-height:1.8">Thirteen years later, it's here. Not as a Windows 8 Metro app but as a full OASIS OAPP — connected to the karma engine, to Our World, to every other app in the Omniverse. Worth the wait.</p>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="quote-band">
+  <div class="quote-inner reveal">
+    <div style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.22em;color:var(--teal);margin-bottom:20px">DAVID ELLAMS — CREATOR</div>
+    <p style="font-size:19px;color:#c8e8d8;line-height:1.85;font-style:italic;margin-bottom:20px">"I always believed the best version of yourself in real life should be the best version of yourself in the game. Be Mindful is how that happens. Sit in stillness. Breathe deeply. Move with intention. And watch your power grow — not just in the game, but in the world."</p>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--text);opacity:.5">PART OF THE OASIS OMNIVERSE</div>
+  </div>
+</div>
+
+<!-- OASIS INTEGRATION -->
+<div class="oasis-band" id="oasis">
+  <div style="max-width:960px;margin:0 auto;text-align:center">
+    <div class="section-kicker" style="text-align:center">OASIS OMNIVERSE</div>
+    <h2 class="section-title">YOUR PRACTICE POWERS YOUR WORLD</h2>
+    <span class="section-line" style="display:block;width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--teal),transparent);margin:0 auto 32px"></span>
+    <p style="font-size:16px;color:var(--text);max-width:680px;margin:0 auto 44px;line-height:1.75">Be Mindful isn't a wellness app that sits in a silo. Every session, every streak, every mood log feeds directly into the OASIS karma engine — shaping your avatar, your aura and your power across Our World, One World, ODOOM, OQUAKE and beyond.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(210px,100%),1fr));gap:16px;max-width:900px;margin:0 auto 40px">
+      <div class="reveal" style="background:rgba(0,200,160,.04);border:1px solid rgba(0,200,160,.14);border-radius:12px;padding:20px">
+        <div style="font-family:'Orbitron',sans-serif;font-size:12px;font-weight:800;color:var(--heading);margin-bottom:6px">OUR WORLD</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.5">Sessions appear as glowing practice nodes on the Our World map. Meditate in a park and raise the local vibration for everyone.</div>
+      </div>
+      <div class="reveal" style="background:rgba(123,79,232,.04);border:1px solid rgba(123,79,232,.15);border-radius:12px;padding:20px">
+        <div style="font-family:'Orbitron',sans-serif;font-size:12px;font-weight:800;color:var(--heading);margin-bottom:6px">ONE WORLD</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.5">Guided visualisations unlock discovery tokens for real One World locations. Your calm unlocks the ancient world.</div>
+      </div>
+      <div class="reveal" style="background:rgba(0,200,160,.04);border:1px solid rgba(0,200,160,.14);border-radius:12px;padding:20px">
+        <div style="font-family:'Orbitron',sans-serif;font-size:12px;font-weight:800;color:var(--heading);margin-bottom:6px">YOGA4AUTISM</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.5">Classes booked via the Y4A Portal earn a community karma bonus and contribute to your Be Mindful practice streak.</div>
+      </div>
+      <div class="reveal" style="background:rgba(240,192,96,.04);border:1px solid rgba(240,192,96,.14);border-radius:12px;padding:20px">
+        <div style="font-family:'Orbitron',sans-serif;font-size:12px;font-weight:800;color:var(--heading);margin-bottom:6px">OPORTAL</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.5">Your full wellbeing history, mood graph, practice streaks and karma earned from Be Mindful all live in your OPORTAL dashboard.</div>
+      </div>
+    </div>
+
+    <a href="https://oasisomniverse.one" target="_blank" class="btn-primary" style="display:inline-block">EXPLORE THE OASIS OMNIVERSE</a>
+
+    <div class="pill-row">
+      <span class="pill">Web4 Avatar SSO</span>
+      <span class="pill violet">OASIS Karma Engine</span>
+      <span class="pill gold">Mood & Aura Sync</span>
+      <span class="pill">Our World Integration</span>
+      <span class="pill violet">HyperDrive</span>
+      <span class="pill gold">Daily Streaks</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">BE MINDFUL</div>
+      <p class="footer-sub">Your daily mindfulness companion in the OASIS Omniverse. Every meditation, breath session, yoga class and moment of stillness earns karma that carries across every OASIS game. Be present. Be well. Be powerful.</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://oasisomniverse.one" target="_blank">OASIS OMNIVERSE</a>
+      <a href="https://ourworldthegame.com" target="_blank">OUR WORLD</a>
+      <a href="https://yoga4autism.oasisomniverse.one" target="_blank">YOGA4AUTISM</a>
+      <a href="https://oportal.oasisomniverse.one" target="_blank">OPORTAL</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 NextGen Software / David Ellams · Be Mindful · Part of the OASIS Omniverse · All rights reserved</div>
+</footer>
+
+<script type="module">
+try{
+  const{OASISClient}=await import('https://esm.sh/@oasisomniverse/web4-api@2.0.2');
+  const oasis=new OASISClient({baseUrl:'https://api.web4.oasisomniverse.one',persistSession:true});
+  const nr=document.getElementById('nav-right');
+  const btn=document.createElement('button');
+  btn.style.cssText='font-family:"Share Tech Mono",monospace;font-size:10px;letter-spacing:.14em;padding:9px 18px;border-radius:6px;border:1px solid rgba(0,200,160,.4);background:transparent;color:#00c8a0;cursor:pointer;transition:background .2s';
+  const sess=oasis.getSession();
+  const setLabel=s=>{btn.textContent=s?`⬡ ${s.username||'AVATAR'}`:'⬡ CONNECT AVATAR'};
+  setLabel(sess);
+  btn.addEventListener('click',async()=>{
+    if(oasis.getSession()){oasis.logout();setLabel(null);return;}
+    try{const s=await oasis.loginWithSelector();setLabel(s);}catch{}
+  });
+  nr.insertBefore(btn,nr.firstChild);
+}catch{}
+</script>
+
+<script>
+/* STARFIELD */
+(function(){
+  const c=document.getElementById('starfield');
+  const ctx=c.getContext('2d');
+  let W,H,stars=[];
+  function resize(){W=c.width=innerWidth;H=c.height=innerHeight;stars=Array.from({length:160},()=>({
+    x:Math.random()*W,y:Math.random()*H,
+    r:Math.random()*1.3+.3,
+    o:Math.random()*.6+.1,
+    s:Math.random()*.01+.003,
+    teal:Math.random()<.15
+  }))}
+  window.addEventListener('resize',resize);resize();
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    stars.forEach(s=>{
+      s.o+=s.s*(s.d=s.d||1);
+      if(s.o>.85||s.o<.08)s.d*=-1;
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=s.teal?`rgba(0,200,160,${s.o})`:`rgba(180,220,255,${s.o})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* SCROLL REVEAL */
+(function(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+})();
+</script>
+</body>
+</html>
